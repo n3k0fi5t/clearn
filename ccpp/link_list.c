@@ -6,7 +6,7 @@ typedef struct{
 }Llist, *lptr;
 
 Llist * insert(Llist *root, int data);
-Llist * delete(Llist *root, int data);
+void delete(Llist *root, int data);
 Llist * reverse(Llist * root);
 void traverse_list(lptr root);
 
@@ -16,6 +16,8 @@ int main(int argc, const char *argv[])
   root = insert(root,2);
   root = insert(root,4);
   root = insert(root,6);
+  root = insert(root,8);
+  delete(root, 8);
   root = insert(root,1);
   root = insert(root,3);
   root = insert(root,5);
@@ -51,7 +53,7 @@ Llist * insert(Llist *root, int data){
 
   return tmp;
 }
-Llist * delete(Llist *root, int data){
+void  delete(Llist *root, int data){
 //traverse list
   Llist *prev = NULL, *current=root;
   while(current->data != data){
@@ -68,7 +70,6 @@ Llist * delete(Llist *root, int data){
     prev->next = current->next;
   }
   free(current);
-  return root;
 }
 
 void traverse_list(lptr root){
