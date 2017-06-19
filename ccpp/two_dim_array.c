@@ -47,10 +47,7 @@ int main(int argc, const char *argv[])
     }
     //initialize matrix
     for(i=0;i<row;i++){
-      for(j=0;j<col;j++){
         memset(matrix[i],0,sizeof(int)*col);
-        //matrix[i][j]=0;
-      }
     }
     print(matrix,row,col);
 
@@ -61,7 +58,7 @@ int main(int argc, const char *argv[])
 
       fgets(s,BUFFER_SIZE,fp);
       s[strlen(s)]='\0';
-      printf("%s, %d",s,strlen(s));
+      printf("%s, %lu",s,strlen(s));
 
       token = strtok(s,delimiter);
 
@@ -78,6 +75,8 @@ int main(int argc, const char *argv[])
     print(matrix,row,col);
     int **new_matrix = transpose(matrix, row,col);
     print(new_matrix,col,row);
+    int **new_matrix2= transpose(new_matrix, col,row);
+    print(new_matrix2,row,col);
 
   }else{
     printf("file %s open failed",filename);
@@ -95,7 +94,7 @@ int **transpose(int **matrix,int row, int col){
 
   for(i = 0;i<row;i++){
     for(j=0;j<col;j++){
-      new_matrix[j][row-i-1] = matrix[i][j];
+      new_matrix[j][i] = matrix[i][j];
     }
   }
   return new_matrix;
